@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>FoxBriar Arabians | Home</title>
+  <script src="horses.js"></script>
+  <link rel="stylesheet" type="text/css" href="../reset.css">
+  <link rel="stylesheet" type="text/css" href="../index.css">
+</head>
+
+<body>
+  <nav>
+    <div class="vert-center">
+      <div class="logo"></div>
+    </div>
+    <div class="vert-center">
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="pages/sales-horses.html">Sale Horses</a>
+        <a href="pages/contact.html">Contact</a>
+      </div>
+    </div>
+
+  </nav>
+  <h1>Welcome to FoxBriar Arabians</h1>
+  <a href="pages/detail.html">Example link</a>
+  <h2>Available Horses</h2>
+  <div id="cardsContainer">
+    <div>ITEMS</div>
+  </div>
+  <!-- <ul id="ul"></ul> -->
+</body>
+<script>
+  // var data = '[ { "name": "Henry the Horse", "age": 4, "color": "black", "url": "?horse=1" }, { "name": "John Wayne", "age": 7, "color": "brown", "url": "?horse=2" } ]';
+  //    ATTEMPT IMPORT JS FILE
+  // var horses = import('./horses.js')
+  // console.log('horses', horses)
+  //    ATTEMPT IMPORT JSON
+  // var data = import('./horses.json')
+  // console.log('data', data)
+  // var horses = JSON.parse(data);
+  //    ATTEMPT IMPORT AS
+  // import * as horses from ('./horses.js') --- NOT NODE
+
+  var container = document.getElementById('cardsContainer');
+  console.log("container", container)
+  var fragment = document.createDocumentFragment();
+
+  horses.forEach(function (horse) {
+    console.log("horse", horse);
+    console.log("horse.name", horse.name);
+    var div = document.createElement('div');
+    var a = document.createElement('a');
+    a.textContent = horse.name;
+    a.href = "./pages/detail.html" + horse.url;
+    // a.href = "detail.html"
+    div.appendChild(a);
+    var img = document.createElement('div');
+    img.setAttribute("class", "img-basic");
+    img.setAttribute("style", 'background-image:' + 'url(./images/' + horse.image + '.jpg)');
+    div.appendChild(img);
+    fragment.appendChild(div);
+  });
+  console.log("container", container)
+  container.appendChild(fragment);
+</script>
+
+</html>

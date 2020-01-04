@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+
+  <script src="../horses.js"></script>
+  <link rel="stylesheet" type="text/css" href="reset.css">
+  <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+<body>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="">About</a>
+    <a href="">Contact</a>
+  </nav>
+  <div id="mainContainer">
+    <!-- <h1 id="name"></h1>
+    <p id="age"></p>
+    <p id="color"></p>
+    <img id="img" src="" alt="">
+    <p></p> -->
+  </div>
+</body>
+
+<script>
+  let queryString = document.location.search;
+  var currentHorse;
+  horses.forEach(function (horse) {
+    if (horse.url === queryString) {
+      currentHorse = horse;
+      console.log('currentHorse')
+    }
+  });
+  // Place horse info in page
+  var container = document.getElementById('mainContainer');
+  var fragment = document.createDocumentFragment();
+
+  function addElem(type, prop) {
+    var elem = document.createElement(`${type}`);
+    if (type === 'img') {
+      elem.src = '../images/' + currentHorse.image + '.jpg';
+    } else {
+      elem.innerText = currentHorse[prop]
+    }
+    fragment.appendChild(elem);
+  }
+  document.title = "FoxBriar Arabians | " + currentHorse.name;
+  addElem('h2', 'name');
+  addElem('p', 'age');
+  addElem('p', 'color');
+  addElem('img', 'NA');
+
+  container.appendChild(fragment);
+
+  // let name = document.getElementById("name");
+  // let age = document.getElementById("age");
+  // let color = document.getElementById("color");
+  // color
+  // let img = document.getElementById("img");
+  // img.src = './images/' + currentHorse.name + ".jpg";
+  console.log("currentHorse", currentHorse);
+</script>
+
+</html>
